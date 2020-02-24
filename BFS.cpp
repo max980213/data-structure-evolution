@@ -8,7 +8,7 @@
 //         DFS，通过枚举每一种路径，寻找最短的哪个
 
 #include <stdio.h>
-#include <string.h>
+//#include <string.h>
 #include <queue> //BFS思想
 
 #define MAX 100
