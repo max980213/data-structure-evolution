@@ -81,21 +81,3 @@ int main()
     return 0;
 }
 
-    for(int i=0;i<M;i++)
-    {
-        int id,childnum,child;
-        cin>>id>>childnum;
-        for(int j=0;j<childnum;j++)
-        {
-            cin>>child;
-            node[id].child.push_back(child);
-        }
-        sort(node[id].child.begin(),node[id].child.end(),cmp);  //在输入时就对其排序
-    }
-    cout<<endl;
-    DFSsearch(00,0,0,X);
-    return 0;
-}
-
-
-
