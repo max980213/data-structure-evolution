@@ -39,22 +39,23 @@ bool cmp(int a,int b)
 
 void DFSsearch(int index,int nodeNum,int sum,int X) //当前访问的结点下标，当前path上的结点个数（层数），当前权值总和
 {
-    path[nodeNum++]=index;
-    sum+=node[index].weight;
-    if(sum>X)
+    path[nodeNum++]=index;   //记录当前结点
+    sum+=node[index].weight;  //更新权值
+    if(sum>X)  //如果超了就返回
         return;
     else if(sum==X)
     {
-        if(!node[index].child.empty())
+        if(!node[index].child.empty())  //如果不是叶子结点返回
             return;
         else
-        {
-            for(int i=0;i<nodeNum;i++)
-                cout<<node[path[i]].weight<<" ";
-            cout<<endl;  //可以通过计数器判断与nodeNum的关系，最后一行不输出换行
+        { 
+            for(int i=0;i<nodeNum;i++)   //是叶子节点，输出路径上的权值
+                cout<<node[path[i]].weight<<" "; 
+            cout<<endl; 
         }
+
     }
-    else
+    else  //继续遍历
     {
         for(vector<int>::iterator it=node[index].child.begin();it!=node[index].child.end();it++)
             DFSsearch(*it,nodeNum,sum,X);
@@ -68,6 +69,9 @@ int main()
     cin>>N>>M>>X;
     for(int i=0;i<N;i++)
         cin>>node[i].weight;
+    for(int i=0;i<M;i++)
+    {
+        int id,childnum,child;
         cin>>id>>childnum;
         for(int j=0;j<childnum;j++)
         {
@@ -80,4 +84,3 @@ int main()
     DFSsearch(00,0,0,X);
     return 0;
 }
-
