@@ -1,4 +1,4 @@
-//dj斯特拉喝dfs的结合
+//dj斯特拉和dfs的结合
 //思想：先用dj斯特拉找出所有最短路径，然后再用DFS，比较每一条最短路径的第二标尺
 //存放前驱节点，可以用一个vector向量
 
@@ -23,7 +23,7 @@ const int INF=1000000000;   //表示不可达
 
 int n,m,st,ed,G[maxn][maxn],cost[maxn][maxn];
 int d[maxn],minCost=INF;  //d[i]记录到达i点的最短距离，minCost记录最短路径上的最小花费
-int vis[maxn][maxn]={0}; //访问位
+bool vis[maxn]={0}; //访问位
 vector<int> pre[maxn]; //前驱
 vector<int> tempPath,path; //临时路径和最优路径
 
@@ -44,7 +44,7 @@ void djstra(int s) //s为起点
         }
         if(u==-1)
             return;  //u==-1，说明该次结点到各结点没有路径，返回
-        vis[u]=1; //标记为已访问
+        vis[u]=true; //标记为已访问
         for(int v=0;v<n;v++)  //如果v未访问且能到达
         {
             if(vis[v]==0&&G[u][v]!=INF)
@@ -68,7 +68,7 @@ void DFS(int v)  //统计每一个最短路径，v为当前节点
 {
     if(v==st) //因为是从最后一个结点开始，所以起始结点为递归边界
     {
-        tempPath.push_back(v); /
+        tempPath.push_back(v);
         int tempCost=0; //记录花费之和
         for(int i=tempPath.size()-1;i>0;i--)  //倒着访问
         {
@@ -106,7 +106,9 @@ int main()
     djstra(st);
     DFS(ed);
     for(int i=path.size()-1;i>=0;i--)
-        cout>>path[i]>>" ";
+        cout<<path[i]<<" ";
     cout<<endl<<d[ed]<<minCost;
     return 0;
 }
+
+
